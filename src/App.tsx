@@ -1,27 +1,29 @@
-import {  Box, Flex, Text } from '@chakra-ui/react';
-import './App.css';
-import Board from './components/Board'
+import { useState, createContext, useContext } from 'react';
+import HomePage from './pages/HomePage';
+import GamePage from './pages/GamePage';
+import SettingsPage from './pages/SettingsPage';
+import LeaderboardPage from './pages/LeaderboardPage';
+
+interface PageContextType {
+  setPage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const PageContext = createContext<PageContextType | null>(null);
 
 function App() {
+  const [page, setPage] = useState('home');
+
   return (
-    <Flex direction="column" minHeight="100vh">
-      <Box as="header" bg="teal.500" color="white" p={4}>
-        <Text
-        fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }}
-        fontWeight="bold"
-        textAlign="center"
-        >
-          Lost Words
-        </Text>
-      </Box>
-      <Flex as="main" bg="white" flex="1" p={4} alignItems='center' justifyContent='center'>
-        <Board/>
-      </Flex>
-      <Box as="footer" bg="teal.500" color="white" p={4}>
-        <Text fontSize="md" textAlign='center'>Developed by Rasmus Makiniemi</Text>
-      </Box>
-    </Flex>
+    <PageContext.Provider value={{ setPage }}>
+      {page === 'home' ? <HomePage /> :
+       page === 'game' ? <GamePage /> :
+       page === 'settings' ? <SettingsPage /> :
+       page === 'leaderboard' ? <LeaderboardPage /> :
+       <>No Page Set</>}
+    </PageContext.Provider>
   );
 }
+
+export const usePageContext = () => useContext(PageContext);
 
 export default App;
