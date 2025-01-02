@@ -1,6 +1,6 @@
 import { PageContext } from "@/App";
 import Board from "@/components/Board"
-import { Box, Flex, Text } from "@chakra-ui/react"
+import { Box, Button, Flex, Text } from "@chakra-ui/react"
 import { useContext } from "react";
 
 function GamePage() {
@@ -14,22 +14,21 @@ function GamePage() {
 
   return (
     <Flex direction="column" minHeight="100vh">
-        <Box as="header" bg="teal.500" color="white" p={4}>
+        {/* <Flex justifyContent='center' alignItems='center' as="header" bg="teal.500" color="white" p={4}>
+          <Button left='3vw' position='absolute' onClick={() => setPage('home')}>
+            Takaisin
+          </Button>
           <Text
-          fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }}
-          fontWeight="bold"
-          textAlign="center"
-          onClick={() => setPage('home')}
+            fontSize={{ base: '4xl', md: '5xl', lg: '6xl' }}
+            fontWeight="bold"
+            textAlign="center"
           >
             Lost Words
           </Text>
-        </Box>
+        </Flex> */}
         <Flex as="main" bg="white" flex="1" p={4} alignItems='center' justifyContent='center'>
           <Board/>
         </Flex>
-        <Box as="footer" bg="teal.500" color="white" p={4}>
-          <Text fontSize="md" textAlign='center'>Developed by Rasmus Makiniemi</Text>
-        </Box>
       </Flex>
   )
 }
